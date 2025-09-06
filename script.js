@@ -249,7 +249,7 @@ function animateCounter(element, target, duration = 2000) {
     updateCounter();
 }
 
-// Enhanced stats animation with improved observer
+// Enhanced stats animation with improved observer and multiple fallbacks
 const statsObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -269,41 +269,82 @@ const statsObserver = new IntersectionObserver(function(entries) {
         }
     });
 }, { 
-    threshold: 0.3,
+    threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 });
 
-// Observe stats section
+// Multiple fallback strategies for stats animation
 document.addEventListener('DOMContentLoaded', function() {
     const statsSection = document.querySelector('.statistics-section');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
+    if (!statsSection) return;
+    
+    let animationTriggered = false;
+    
+    // Strategy 1: Intersection Observer
+    statsObserver.observe(statsSection);
+    
+    // Strategy 2: Scroll-based trigger
+    function triggerStatsAnimation() {
+        if (animationTriggered) return;
         
-        // Fallback: ensure numbers are displayed even if animation fails
-        setTimeout(() => {
+        const rect = statsSection.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+            animationTriggered = true;
             const statNumbers = statsSection.querySelectorAll('.stat-number[data-count]');
-            statNumbers.forEach(stat => {
-                if (!stat.classList.contains('animated')) {
-                    const target = parseInt(stat.getAttribute('data-count'));
-                    const statItem = stat.closest('.stat-item');
-                    const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
-                    let suffix = '';
-                    
-                    if (target >= 100) {
-                        suffix = '+';
-                    } else if (target === 98) {
-                        suffix = '%';
-                    } else if (statLabel.includes('Heures')) {
-                        suffix = 'h';
-                    } else if (statLabel.includes('Années')) {
-                        suffix = ' ans';
-                    }
-                    
-                    stat.textContent = target + suffix;
+            statNumbers.forEach((stat, index) => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                
+                if (target && !stat.classList.contains('animated')) {
                     stat.classList.add('animated');
+                    stat.textContent = '0';
+                    setTimeout(() => {
+                        animateCounter(stat, target, 2000);
+                    }, index * 200);
                 }
             });
-        }, 3000); // Fallback after 3 seconds
+        }
+    }
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', triggerStatsAnimation);
+    
+    // Strategy 3: Immediate fallback for visible elements
+    setTimeout(() => {
+        triggerStatsAnimation();
+    }, 500);
+    
+    // Strategy 4: Final fallback - ensure numbers are displayed
+    setTimeout(() => {
+        const statNumbers = statsSection.querySelectorAll('.stat-number[data-count]');
+        statNumbers.forEach(stat => {
+            if (!stat.classList.contains('animated')) {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const statItem = stat.closest('.stat-item');
+                const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
+                let suffix = '';
+                
+                if (target >= 100) {
+                    suffix = '+';
+                } else if (target === 98) {
+                    suffix = '%';
+                } else if (statLabel.includes('Heures')) {
+                    suffix = 'h';
+                } else if (statLabel.includes('Années')) {
+                    suffix = ' ans';
+                }
+                
+                stat.textContent = target + suffix;
+                stat.classList.add('animated');
+                animationTriggered = true;
+            }
+        });
+    }, 2000); // Earlier fallback
+    
+    // Strategy 5: Page load fallback
+    if (document.readyState === 'complete') {
+        setTimeout(triggerStatsAnimation, 100);
     }
 });
 
@@ -414,6 +455,35 @@ function createBackToTopButton() {
 
 // Initialize back to top button
 document.addEventListener('DOMContentLoaded', createBackToTopButton);
+
+// Emergency fallback for stats - ensure they always display
+document.addEventListener('DOMContentLoaded', function() {
+    // Force display stats after a short delay regardless of other conditions
+    setTimeout(() => {
+        const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+        statNumbers.forEach(stat => {
+            if (stat.textContent === '0' || !stat.classList.contains('animated')) {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const statItem = stat.closest('.stat-item');
+                const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
+                let suffix = '';
+                
+                if (target >= 100) {
+                    suffix = '+';
+                } else if (target === 98) {
+                    suffix = '%';
+                } else if (statLabel.includes('Heures')) {
+                    suffix = 'h';
+                } else if (statLabel.includes('Années')) {
+                    suffix = ' ans';
+                }
+                
+                stat.textContent = target + suffix;
+                stat.classList.add('animated');
+            }
+        });
+    }, 1000);
+});
 
 // Brands section animations
 document.addEventListener('DOMContentLoaded', function() {
