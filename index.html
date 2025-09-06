@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FABREPAIR'TECH - Réparation de téléphones professionnelle</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                <span class="logo-text">FABREPAIR'TECH</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Nos Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Réparation de téléphones <span class="highlight">professionnelle</span></h1>
+                <p class="hero-description">
+                    Votre smartphone en panne ? Notre équipe d'experts vous offre un service de réparation rapide, 
+                    fiable et à prix compétitif. Nous réparons tous types d'appareils avec des pièces de qualité.
+                </p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="btn btn-primary">Nos Services</a>
+                    <a href="contact.html" class="btn btn-secondary">Contactez-nous</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-repair-illustration">
+                    <i class="fas fa-mobile-alt phone-icon"></i>
+                    <i class="fas fa-tools tools-icon"></i>
+                    <i class="fas fa-cog gear-icon"></i>
+                    <div class="sparkles">
+                        <i class="fas fa-star sparkle-1"></i>
+                        <i class="fas fa-star sparkle-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Réparation d'écran</h3>
+                    <p>Remplacement d'écran cassé pour tous modèles de smartphones</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-battery-half"></i>
+                    </div>
+                    <h3>Changement de batterie</h3>
+                    <p>Batterie qui se décharge trop vite ? Nous la remplaçons rapidement</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Réparation audio</h3>
+                    <p>Problèmes de son, haut-parleur ou microphone réparés</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Réparation caméra</h3>
+                    <p>Caméra floue ou cassée ? Nous restaurons votre appareil photo</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="services.html" class="btn btn-outline">Voir tous nos services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2 class="section-title">Pourquoi choisir FABREPAIR'TECH ?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Réparation rapide</h3>
+                    <p>La plupart des réparations sont effectuées en moins de 2 heures</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantie</h3>
+                    <p>6 mois de garantie sur toutes nos réparations</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <h3>Prix compétitifs</h3>
+                    <p>Tarifs transparents et sans surprise</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Techniciens experts</h3>
+                    <p>Plus de 10 ans d'expérience dans la réparation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+        <div class="container">
+            <div class="stats-header">
+                <h2 class="section-title">FABREPAIR'TECH en chiffres</h2>
+                <p class="stats-subtitle">Des résultats qui parlent d'eux-mêmes</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">Appareils réparés</div>
+                    <div class="stat-description">Depuis notre création</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Satisfaction client</div>
+                    <div class="stat-description">Clients satisfaits</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number" data-count="2">0</div>
+                    <div class="stat-label">Heures</div>
+                    <div class="stat-description">Temps moyen de réparation</div>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-number" data-count="2">0</div>
+                    <div class="stat-label">Années</div>
+                    <div class="stat-description">D'expérience professionnelle</div>
+                </div>
+            </div>
+            <div class="stats-footer">
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Garantie 6 mois</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Pièces originales</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Techniciens certifiés</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stats-background-elements">
+            <div class="floating-icon icon-1">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="floating-icon icon-2">
+                <i class="fas fa-wrench"></i>
+            </div>
+            <div class="floating-icon icon-3">
+                <i class="fas fa-screwdriver"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Ce que disent nos clients</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Service exceptionnel ! Mon iPhone a été réparé en moins d'une heure. L'équipe est très professionnelle et les prix sont corrects."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Marie Dubois</h4>
+                            <span>Cliente depuis 2022</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"J'ai fait réparer mon Samsung Galaxy ici. Diagnostic gratuit, réparation rapide et 6 mois de garantie. Je recommande vivement !"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Thomas Martin</h4>
+                            <span>Cliente depuis 2021</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Écran de mon Huawei changé en 45 minutes ! L'équipe est à l'écoute et très compétente. Prix très raisonnable."</p>
+                    </div>
+                    <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sophie Leroy</h4>
+                                <span>Cliente depuis 2023</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="brands-header">
+                <h2 class="section-title">Marques que nous réparons</h2>
+                <p class="brands-subtitle">Plus de 50 modèles différents réparés avec expertise</p>
+            </div>
+            <div class="brands-carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="brands-carousel" id="brandsCarousel">
+                        <div class="brand-item" data-brand="apple">
+                            <div class="brand-logo">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>iPhone</h3>
+                                <p>iPhone 6 à iPhone 15 Pro Max</p>
+                                <div class="brand-models">Tous modèles</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="samsung">
+                            <div class="brand-logo">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Samsung</h3>
+                                <p>Galaxy S, Note, A, Z Fold</p>
+                                <div class="brand-models">Série complète</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="huawei">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Huawei</h3>
+                                <p>P, Mate, Nova, Y</p>
+                                <div class="brand-models">Tous modèles</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="xiaomi">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Xiaomi</h3>
+                                <p>Mi, Redmi, POCO</p>
+                                <div class="brand-models">Gamme complète</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="oneplus">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>OnePlus</h3>
+                                <p>OnePlus 7 à OnePlus 12</p>
+                                <div class="brand-models">Série récente</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="google">
+                            <div class="brand-logo">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Google Pixel</h3>
+                                <p>Pixel 3 à Pixel 8 Pro</p>
+                                <div class="brand-models">Tous modèles</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="oppo">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>OPPO</h3>
+                                <p>Find, Reno, A, F</p>
+                                <div class="brand-models">Gamme complète</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="vivo">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Vivo</h3>
+                                <p>X, V, Y, S</p>
+                                <div class="brand-models">Tous modèles</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="sony">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Sony</h3>
+                                <p>Xperia 1, 5, 10</p>
+                                <div class="brand-models">Série Xperia</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="lg">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>LG</h3>
+                                <p>G, V, K, W</p>
+                                <div class="brand-models">Modèles récents</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="nokia">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Nokia</h3>
+                                <p>Smartphones Android</p>
+                                <div class="brand-models">Gamme moderne</div>
+                            </div>
+                        </div>
+                        <div class="brand-item" data-brand="honor">
+                            <div class="brand-logo">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="brand-info">
+                                <h3>Honor</h3>
+                                <p>Magic, View, Play</p>
+                                <div class="brand-models">Tous modèles</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- Indicators will be generated by JavaScript -->
+                </div>
+                
+                <!-- Auto-play toggle -->
+                <div class="carousel-options">
+                    <button class="play-pause-btn" id="playPauseBtn">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <span class="auto-play-text">Lecture automatique</span>
+                </div>
+            </div>
+            <div class="brands-footer">
+                <div class="brands-stats">
+                    <div class="brand-stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Modèles réparés</div>
+                    </div>
+                    <div class="brand-stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Marques supportées</div>
+                    </div>
+                    <div class="brand-stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Pièces disponibles</div>
+                    </div>
+                </div>
+                <div class="brands-cta">
+                    <p>Votre marque n'est pas listée ? <strong>Contactez-nous !</strong></p>
+                    <a href="contact.html" class="btn btn-outline">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Quick Section -->
+    <section class="faq-quick-section">
+        <div class="container">
+            <h2 class="section-title">Questions fréquentes</h2>
+            <div class="faq-quick-grid">
+                <div class="faq-quick-item">
+                    <h3>Combien de temps prend une réparation ?</h3>
+                    <p>La plupart de nos réparations sont effectuées en 1-2 heures. Pour les réparations complexes, nous vous tiendrons informé du délai estimé.</p>
+                </div>
+                <div class="faq-quick-item">
+                    <h3>Le diagnostic est-il gratuit ?</h3>
+                    <p>Oui, le diagnostic est toujours gratuit et sans engagement de votre part. Nous vous expliquons le problème et vous proposons un devis transparent.</p>
+                </div>
+                <div class="faq-quick-item">
+                    <h3>Quelle est votre garantie ?</h3>
+                    <p>Nous offrons 6 mois de garantie sur toutes nos réparations et pièces utilisées. Votre satisfaction est notre priorité.</p>
+                </div>
+                <div class="faq-quick-item">
+                    <h3>Acceptez-vous tous les modèles ?</h3>
+                    <p>Oui, nous réparons tous les modèles de smartphones et tablettes, des plus anciens aux plus récents.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="contact.html" class="btn btn-outline">Plus de questions ? Contactez-nous</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="promotions-section">
+        <div class="container">
+            <h2 class="section-title">Offres spéciales</h2>
+            <div class="promotions-grid">
+                <div class="promotion-card">
+                    <div class="promotion-badge">-20%</div>
+                    <div class="promotion-content">
+                        <h3>Réparation d'écran</h3>
+                        <p>Remplacement d'écran avec une réduction de 20% sur tous les modèles</p>
+                        <div class="promotion-price">
+                            <span class="old-price">À partir de 59€</span>
+                            <span class="new-price">À partir de 47€</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Profiter de l'offre</a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="promotion-badge">Gratuit</div>
+                    <div class="promotion-content">
+                        <h3>Diagnostic gratuit</h3>
+                        <p>Diagnostic complet de votre appareil sans engagement</p>
+                        <div class="promotion-price">
+                            <span class="new-price">Gratuit</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Prendre RDV</a>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="promotion-badge">-15%</div>
+                    <div class="promotion-content">
+                        <h3>Changement de batterie</h3>
+                        <p>Batterie neuve avec garantie 6 mois et réduction de 15%</p>
+                        <div class="promotion-price">
+                            <span class="old-price">À partir de 45€</span>
+                            <span class="new-price">À partir de 38€</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Réserver maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Votre téléphone a besoin d'une réparation ?</h2>
+                <p>Contactez-nous dès maintenant pour un devis gratuit et sans engagement</p>
+                <a href="contact.html" class="btn btn-primary btn-large">Obtenir un devis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                        <span class="logo-text">FABREPAIR'TECH</span>
+                    </div>
+                    <p>Votre partenaire de confiance pour la réparation de smartphones. Service professionnel, rapide et fiable.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Nos Services</a></li>
+                        <li><a href="about.html">À Propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                        <p><i class="fas fa-envelope"></i> contact@fabrepairtech.fr</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Réparation, 75001 Paris</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Horaires</h3>
+                    <div class="hours">
+                        <p>Lun - Ven: 9h00 - 19h00</p>
+                        <p>Samedi: 9h00 - 17h00</p>
+                        <p>Dimanche: Fermé</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FABREPAIR'TECH. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - FABREPAIR'TECH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                <span class="logo-text">FABREPAIR'TECH</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Nos Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contactez-nous</h1>
+            <p>Besoin d'une réparation ? Une question ? Nous sommes là pour vous aider</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Demandez un devis</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="device">Type d'appareil</label>
+                            <select id="device" name="device">
+                                <option value="">Sélectionnez votre appareil</option>
+                                <option value="iphone">iPhone</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="huawei">Huawei</option>
+                                <option value="xiaomi">Xiaomi</option>
+                                <option value="oneplus">OnePlus</option>
+                                <option value="google-pixel">Google Pixel</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Modèle de l'appareil</label>
+                            <input type="text" id="model" name="model" placeholder="Ex: iPhone 13, Galaxy S21...">
+                        </div>
+                        <div class="form-group">
+                            <label for="problem">Problème rencontré *</label>
+                            <select id="problem" name="problem" required>
+                                <option value="">Sélectionnez le problème</option>
+                                <option value="ecran-casse">Écran cassé/fissuré</option>
+                                <option value="batterie">Problème de batterie</option>
+                                <option value="audio">Problème audio</option>
+                                <option value="camera">Problème caméra</option>
+                                <option value="boutons">Boutons qui ne marchent plus</option>
+                                <option value="charge">Problème de charge</option>
+                                <option value="eau">Contact avec l'eau</option>
+                                <option value="autre">Autre problème</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Description détaillée</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Décrivez le problème en détail..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="urgent" name="urgent">
+                                <span class="checkmark"></span>
+                                Réparation urgente (même jour)
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Envoyer la demande</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <h2>Informations de contact</h2>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Adresse</h3>
+                                <p>123 Rue de la Réparation<br>75001 Paris, France</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                                <small>Lun-Ven: 9h-19h | Sam: 9h-17h</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:contact@fabrepairtech.fr">contact@fabrepairtech.fr</a></p>
+                                <small>Réponse sous 24h</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Horaires</h3>
+                                <div class="hours-detail">
+                                    <p><strong>Lundi - Vendredi:</strong> 9h00 - 19h00</p>
+                                    <p><strong>Samedi:</strong> 9h00 - 17h00</p>
+                                    <p><strong>Dimanche:</strong> Fermé</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>123 Rue de la Réparation<br>75001 Paris</p>
+                            <small>Métro: Châtelet-Les Halles (5 min à pied)</small>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <div class="emergency-contact">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Réparation urgente</h3>
+                        <p>Pour une réparation en urgence, appelez-nous directement au <strong>+33 1 23 45 67 89</strong></p>
+                        <p>Nous pouvons parfois effectuer des réparations le jour même selon la disponibilité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Questions fréquentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Combien de temps prend une réparation ?</h3>
+                    <p>La plupart de nos réparations sont effectuées en 1-2 heures. Pour les réparations complexes, nous vous tiendrons informé du délai estimé.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Quelle est votre garantie ?</h3>
+                    <p>Nous offrons 6 mois de garantie sur toutes nos réparations et pièces utilisées.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Acceptez-vous tous les modèles ?</h3>
+                    <p>Oui, nous réparons tous les modèles de smartphones et tablettes, des plus anciens aux plus récents.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Le diagnostic est-il gratuit ?</h3>
+                    <p>Oui, le diagnostic est toujours gratuit et sans engagement de votre part.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Puis-je récupérer mon appareil le jour même ?</h3>
+                    <p>Dans la plupart des cas, oui. Nous privilégions les réparations rapides pour vous rendre service.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Quels moyens de paiement acceptez-vous ?</h3>
+                    <p>Nous acceptons les espèces, cartes bancaires, chèques et virements bancaires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                        <span class="logo-text">FABREPAIR'TECH</span>
+                    </div>
+                    <p>Votre partenaire de confiance pour la réparation de smartphones. Service professionnel, rapide et fiable.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Nos Services</a></li>
+                        <li><a href="about.html">À Propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                        <p><i class="fas fa-envelope"></i> contact@fabrepairtech.fr</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Réparation, 75001 Paris</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Horaires</h3>
+                    <div class="hours">
+                        <p>Lun - Ven: 9h00 - 19h00</p>
+                        <p>Samedi: 9h00 - 17h00</p>
+                        <p>Dimanche: Fermé</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FABREPAIR'TECH. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
