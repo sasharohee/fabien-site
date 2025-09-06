@@ -219,24 +219,30 @@ document.addEventListener('DOMContentLoaded', function() {
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    const suffix = target >= 100 ? '+' : target === 98 ? '%' : target === 2 && element.closest('.stat-item').querySelector('.stat-label').textContent.includes('Heures') ? 'h' : target === 2 && element.closest('.stat-item').querySelector('.stat-label').textContent.includes('Années') ? ' ans' : '';
+    
+    // Determine suffix based on the stat label
+    const statItem = element.closest('.stat-item');
+    const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
+    let suffix = '';
+    
+    if (target >= 100) {
+        suffix = '+';
+    } else if (target === 98) {
+        suffix = '%';
+    } else if (statLabel.includes('Heures')) {
+        suffix = 'h';
+    } else if (statLabel.includes('Années')) {
+        suffix = ' ans';
+    }
     
     function updateCounter() {
         start += increment;
         if (start < target) {
             const currentValue = Math.floor(start);
-            if (target >= 100) {
-                element.textContent = currentValue + suffix;
-            } else {
-                element.textContent = currentValue + suffix;
-            }
+            element.textContent = currentValue + suffix;
             requestAnimationFrame(updateCounter);
         } else {
-            if (target >= 100) {
-                element.textContent = target + suffix;
-            } else {
-                element.textContent = target + suffix;
-            }
+            element.textContent = target + suffix;
         }
     }
     
@@ -251,7 +257,8 @@ const statsObserver = new IntersectionObserver(function(entries) {
             statNumbers.forEach((stat, index) => {
                 const target = parseInt(stat.getAttribute('data-count'));
                 
-                if (target) {
+                if (target && !stat.classList.contains('animated')) {
+                    stat.classList.add('animated');
                     stat.textContent = '0';
                     setTimeout(() => {
                         animateCounter(stat, target, 2000);
@@ -261,13 +268,42 @@ const statsObserver = new IntersectionObserver(function(entries) {
             statsObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.3 });
+}, { 
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
+});
 
 // Observe stats section
 document.addEventListener('DOMContentLoaded', function() {
-    const statsSection = document.querySelector('.stats-grid');
+    const statsSection = document.querySelector('.statistics-section');
     if (statsSection) {
         statsObserver.observe(statsSection);
+        
+        // Fallback: ensure numbers are displayed even if animation fails
+        setTimeout(() => {
+            const statNumbers = statsSection.querySelectorAll('.stat-number[data-count]');
+            statNumbers.forEach(stat => {
+                if (!stat.classList.contains('animated')) {
+                    const target = parseInt(stat.getAttribute('data-count'));
+                    const statItem = stat.closest('.stat-item');
+                    const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
+                    let suffix = '';
+                    
+                    if (target >= 100) {
+                        suffix = '+';
+                    } else if (target === 98) {
+                        suffix = '%';
+                    } else if (statLabel.includes('Heures')) {
+                        suffix = 'h';
+                    } else if (statLabel.includes('Années')) {
+                        suffix = ' ans';
+                    }
+                    
+                    stat.textContent = target + suffix;
+                    stat.classList.add('animated');
+                }
+            });
+        }, 3000); // Fallback after 3 seconds
     }
 });
 
