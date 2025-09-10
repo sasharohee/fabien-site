@@ -220,8 +220,8 @@ function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
     
-    // Determine suffix based on the stat label
-    const statItem = element.closest('.stat-item');
+    // Determine suffix based on the stat label or data attributes
+    const statItem = element.closest('.stat-item, .stat-card');
     const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
     let suffix = '';
     
@@ -233,6 +233,8 @@ function animateCounter(element, target, duration = 2000) {
         suffix = 'h';
     } else if (statLabel.includes('Années')) {
         suffix = ' ans';
+    } else if (statLabel.includes('Techniciens')) {
+        suffix = '';
     }
     
     function updateCounter() {
@@ -455,6 +457,124 @@ function createBackToTopButton() {
 
 // Initialize back to top button
 document.addEventListener('DOMContentLoaded', createBackToTopButton);
+
+// Enhanced About Story Section Animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate story cards on scroll
+    const storyCards = document.querySelectorAll('.story-intro, .story-growth');
+    
+    const storyObserver = new IntersectionObserver(function(entries) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    storyCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        storyObserver.observe(card);
+    });
+    
+    // Animate timeline items
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    const timelineObserver = new IntersectionObserver(function(entries) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }, index * 300);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    timelineItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        timelineObserver.observe(item);
+    });
+    
+    // Enhanced stats animation for about story section
+    const aboutStatsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+                statNumbers.forEach((stat, index) => {
+                    const target = parseInt(stat.getAttribute('data-target'));
+                    
+                    if (target && !stat.classList.contains('animated')) {
+                        stat.classList.add('animated');
+                        stat.textContent = '0';
+                        setTimeout(() => {
+                            animateCounter(stat, target, 2000);
+                        }, index * 200);
+                    }
+                });
+                aboutStatsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const aboutStatsSection = document.querySelector('.enhanced-stats');
+    if (aboutStatsSection) {
+        aboutStatsObserver.observe(aboutStatsSection);
+    }
+    
+    // Animate stat cards entrance
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    const statCardsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 150);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    statCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        statCardsObserver.observe(card);
+    });
+    
+    // Add hover effects for timeline markers
+    timelineItems.forEach(item => {
+        const marker = item.querySelector('.timeline-marker');
+        if (marker) {
+            marker.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.3)';
+            });
+            
+            marker.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+            });
+        }
+    });
+    
+    // Add parallax effect to story section background
+    const storySection = document.querySelector('.about-story');
+    if (storySection) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            storySection.style.transform = `translateY(${rate}px)`;
+        });
+    }
+});
 
 // Emergency fallback for stats - ensure they always display
 document.addEventListener('DOMContentLoaded', function() {
