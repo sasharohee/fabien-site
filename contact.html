@@ -162,12 +162,23 @@
                         </div>
                     </div>
 
-                    <!-- Map Placeholder -->
+                    <!-- Map -->
                     <div class="map-container">
-                        <div class="map-placeholder">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <p>1 Rue Odilon Redon résidence anthinea<br>33400 Talence</p>
-                            <small>UNIQUEMENT SUR RENDEZ-VOUS</small>
+                        <div class="map-wrapper">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.5!2d-0.5964!3d44.8086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f0a1234567890%3A0x1234567890abcdef!2s1%20Rue%20Odilon%20Redon%2C%2033400%20Talence%2C%20France!5e0!3m2!1sfr!2sfr!4v1640995200000!5m2!1sfr!2sfr"
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Localisation FABREPAIR'TECH - 1 Rue Odilon Redon, 33400 Talence">
+                            </iframe>
+                        </div>
+                        <div class="map-info">
+                            <p><strong>1 Rue Odilon Redon résidence anthinea<br>33400 Talence</strong></p>
+                            <small><i class="fas fa-info-circle"></i> UNIQUEMENT SUR RENDEZ-VOUS</small>
                         </div>
                     </div>
 
@@ -257,6 +268,116 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialiser EmailJS
+        (function() {
+            emailjs.init("2IkcMC0XvU7IiRApp");
+        })();
+
+        // Gestionnaire du formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const formData = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                device_type: document.getElementById('device').value,
+                device_model: document.getElementById('model').value,
+                problem_type: document.getElementById('problem').value,
+                message: document.getElementById('message').value,
+                urgent: document.getElementById('urgent').checked ? 'Oui' : 'Non',
+                to_email: 'contact@fabrepairtech.fr'
+            };
+
+            // Afficher un message de chargement
+            const submitButton = document.querySelector('.btn-primary');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Envoi en cours...';
+            submitButton.disabled = true;
+
+            // Envoyer l'email via EmailJS
+            emailjs.send('service_f43gl4b', 'template_08b5ets', formData)
+                .then(function(response) {
+                    console.log('Email envoyé avec succès!', response.status, response.text);
+                    
+                    // Afficher un message de succès
+                    showNotification('Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.', 'success');
+                    
+                    // Réinitialiser le formulaire
+                    document.getElementById('contactForm').reset();
+                    
+                }, function(error) {
+                    console.error('Erreur lors de l\'envoi:', error);
+                    
+                    // Afficher un message d'erreur
+                    showNotification('Erreur lors de l\'envoi du message. Veuillez réessayer ou nous contacter directement.', 'error');
+                })
+                .finally(function() {
+                    // Restaurer le bouton
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
+        });
+
+        // Fonction pour afficher les notifications
+        function showNotification(message, type) {
+            // Créer l'élément de notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Ajouter les styles CSS pour la notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                z-index: 1000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            // Ajouter l'animation CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                .notification-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Ajouter la notification au DOM
+            document.body.appendChild(notification);
+            
+            // Supprimer la notification après 5 secondes
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
 
