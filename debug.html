@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - FABREPAIR'TECH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-fix.css">
+    <link rel="stylesheet" href="force-fix.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .debug-section {
+            padding: 50px 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .debug-button {
+            background: #000;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .debug-info {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                <span class="logo-text">FABREPAIR'TECH</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Nos Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Debug Content -->
+    <div class="debug-section">
+        <h1>Debug Page</h1>
+        <p>Cette page teste les fonctionnalités avec des logs détaillés</p>
+        
+        <button class="debug-button" onclick="testMenu()">Test Menu</button>
+        <button class="debug-button" onclick="testStats()">Test Stats</button>
+        <button class="debug-button" onclick="showDebugInfo()">Debug Info</button>
+        <button class="debug-button" onclick="forceEverything()">Force Everything</button>
+        
+        <div class="debug-info" id="debugOutput">
+            <h3>Debug Output:</h3>
+            <div id="debugContent">Cliquez sur les boutons pour voir les informations de debug...</div>
+        </div>
+    </div>
+
+    <!-- Test Stats -->
+    <div class="debug-section">
+        <h2>Test des Statistiques</h2>
+        <div class="enhanced-stats">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="100">0</div>
+                        <div class="stat-label">Appareils réparés</div>
+                        <div class="stat-description">Smartphones et tablettes</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="2">0</div>
+                        <div class="stat-label">Années d'expérience</div>
+                        <div class="stat-description">Depuis 2024</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">% Satisfaction</div>
+                        <div class="stat-description">Clients satisfaits</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="mobile-fix.js"></script>
+    <script src="force-fix.js"></script>
+    <script>
+        function log(message) {
+            const debugContent = document.getElementById('debugContent');
+            const timestamp = new Date().toLocaleTimeString();
+            debugContent.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            console.log(message);
+        }
+        
+        function testMenu() {
+            log('=== TEST MENU ===');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            log(`Hamburger found: ${!!hamburger}`);
+            log(`Nav menu found: ${!!navMenu}`);
+            
+            if (hamburger) {
+                log(`Hamburger classes: ${hamburger.className}`);
+                log(`Hamburger style display: ${hamburger.style.display}`);
+                log(`Hamburger computed display: ${getComputedStyle(hamburger).display}`);
+            }
+            
+            if (navMenu) {
+                log(`Nav menu classes: ${navMenu.className}`);
+                log(`Nav menu style left: ${navMenu.style.left}`);
+                log(`Nav menu computed left: ${getComputedStyle(navMenu).left}`);
+            }
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                log('Menu toggled!');
+            }
+        }
+        
+        function testStats() {
+            log('=== TEST STATS ===');
+            const stats = document.querySelectorAll('.stat-number[data-count]');
+            log(`Found ${stats.length} stat numbers`);
+            
+            stats.forEach((stat, index) => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const currentValue = stat.textContent;
+                log(`Stat ${index}: target=${target}, current="${currentValue}"`);
+                
+                // Force update
+                const statCard = stat.closest('.stat-card');
+                const label = statCard ? statCard.querySelector('.stat-label').textContent : '';
+                let suffix = '';
+                
+                if (target >= 100) suffix = '+';
+                else if (target === 98) suffix = '%';
+                else if (label.includes('Années')) suffix = ' ans';
+                
+                stat.textContent = target + suffix;
+                log(`Forced stat ${index}: ${target + suffix}`);
+            });
+        }
+        
+        function showDebugInfo() {
+            log('=== DEBUG INFO ===');
+            log(`Window width: ${window.innerWidth}`);
+            log(`Window height: ${window.innerHeight}`);
+            log(`User agent: ${navigator.userAgent}`);
+            log(`Document ready state: ${document.readyState}`);
+            log(`Scripts loaded: ${document.querySelectorAll('script').length}`);
+        }
+        
+        function forceEverything() {
+            log('=== FORCE EVERYTHING ===');
+            
+            // Force stats
+            const stats = document.querySelectorAll('.stat-number[data-count]');
+            stats.forEach((stat, index) => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const statCard = stat.closest('.stat-card');
+                const label = statCard ? statCard.querySelector('.stat-label').textContent : '';
+                let suffix = '';
+                
+                if (target >= 100) suffix = '+';
+                else if (target === 98) suffix = '%';
+                else if (label.includes('Années')) suffix = ' ans';
+                
+                stat.textContent = target + suffix;
+                stat.style.opacity = '1';
+                stat.style.visibility = 'visible';
+                stat.style.display = 'block';
+                stat.style.fontSize = '2.5rem';
+                stat.style.fontWeight = '700';
+                stat.style.color = '#000';
+            });
+            
+            // Force menu
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger) {
+                hamburger.style.display = 'flex';
+                hamburger.style.cursor = 'pointer';
+                hamburger.style.padding = '15px';
+                hamburger.style.zIndex = '1001';
+            }
+            
+            if (navMenu) {
+                navMenu.style.position = 'fixed';
+                navMenu.style.left = '-100%';
+                navMenu.style.top = '70px';
+                navMenu.style.width = '100%';
+                navMenu.style.height = 'calc(100vh - 70px)';
+                navMenu.style.backgroundColor = '#fff';
+                navMenu.style.zIndex = '1000';
+                navMenu.style.transition = 'left 0.3s ease';
+            }
+            
+            log('Everything forced!');
+        }
+        
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            log('Page loaded, running auto-tests...');
+            setTimeout(() => {
+                testStats();
+                showDebugInfo();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
