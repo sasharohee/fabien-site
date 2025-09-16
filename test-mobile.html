@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile - FABREPAIR'TECH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-fix.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .test-button {
+            background: #000;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .test-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                <span class="logo-text">FABREPAIR'TECH</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Nos Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Test Content -->
+    <div style="margin-top: 70px;">
+        <div class="test-section">
+            <h1>Test Mobile</h1>
+            <p>Cette page teste les fonctionnalités mobiles</p>
+            
+            <button class="test-button" onclick="testMenu()">Tester le Menu</button>
+            <button class="test-button" onclick="testStats()">Tester les Stats</button>
+            <button class="test-button" onclick="showDebugInfo()">Info Debug</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Test des Statistiques</h2>
+            <div class="test-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="100">0</div>
+                        <div class="stat-label">Appareils réparés</div>
+                        <div class="stat-description">Smartphones et tablettes</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="2">0</div>
+                        <div class="stat-label">Années d'expérience</div>
+                        <div class="stat-description">Depuis 2024</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">% Satisfaction</div>
+                        <div class="stat-description">Clients satisfaits</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="mobile-fix.js"></script>
+    <script>
+        function testMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            console.log('Menu test:', {
+                hamburger: hamburger,
+                navMenu: navMenu,
+                hamburgerClasses: hamburger ? hamburger.className : 'not found',
+                navMenuClasses: navMenu ? navMenu.className : 'not found'
+            });
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                alert('Menu toggled! Check console for details.');
+            } else {
+                alert('Menu elements not found!');
+            }
+        }
+        
+        function testStats() {
+            const stats = document.querySelectorAll('.stat-number[data-count]');
+            console.log('Stats test:', stats);
+            stats.forEach((stat, index) => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                stat.textContent = target;
+                console.log(`Stat ${index}: ${target}`);
+            });
+            alert('Stats updated! Check console for details.');
+        }
+        
+        function showDebugInfo() {
+            const info = {
+                windowWidth: window.innerWidth,
+                isMobile: window.innerWidth <= 768,
+                hamburger: document.querySelector('.hamburger'),
+                navMenu: document.querySelector('.nav-menu'),
+                stats: document.querySelectorAll('.stat-number[data-count]').length
+            };
+            console.log('Debug info:', info);
+            alert(`Debug info logged to console:\nWidth: ${info.windowWidth}\nMobile: ${info.isMobile}\nStats: ${info.stats}`);
+        }
+    </script>
+</body>
+</html>
