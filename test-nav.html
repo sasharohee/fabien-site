@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navigation - FABREPAIR'TECH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-content {
+            margin-top: 70px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .test-button {
+            background: #000;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .test-info {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="FABREPAIR'TECH" class="logo">
+                <span class="logo-text">FABREPAIR'TECH</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Nos Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Test Content -->
+    <div class="test-content">
+        <h1>Test Navigation</h1>
+        <p>Cette page teste la nouvelle navigation simplifiée</p>
+        
+        <button class="test-button" onclick="testMenu()">Test Menu</button>
+        <button class="test-button" onclick="showInfo()">Show Info</button>
+        
+        <div class="test-info" id="info">
+            <h3>Navigation Info:</h3>
+            <div id="infoContent">Cliquez sur "Show Info" pour voir les détails...</div>
+        </div>
+        
+        <div class="test-info">
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Cliquez sur le menu burger (3 barres) en haut à droite</li>
+                <li>Le menu devrait s'ouvrir en glissant depuis la gauche</li>
+                <li>Cliquez sur un lien pour naviguer et fermer le menu</li>
+                <li>Cliquez à l'extérieur du menu pour le fermer</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="navigation.js"></script>
+    <script>
+        function testMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                alert('Menu toggled! Check if it opened/closed.');
+            } else {
+                alert('Menu elements not found!');
+            }
+        }
+        
+        function showInfo() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const infoContent = document.getElementById('infoContent');
+            
+            const info = {
+                windowWidth: window.innerWidth,
+                isMobile: window.innerWidth <= 768,
+                hamburgerFound: !!hamburger,
+                navMenuFound: !!navMenu,
+                hamburgerDisplay: hamburger ? getComputedStyle(hamburger).display : 'not found',
+                navMenuPosition: navMenu ? getComputedStyle(navMenu).position : 'not found',
+                hamburgerClasses: hamburger ? hamburger.className : 'not found',
+                navMenuClasses: navMenu ? navMenu.className : 'not found'
+            };
+            
+            let infoText = '';
+            for (const [key, value] of Object.entries(info)) {
+                infoText += `${key}: ${value}\n`;
+            }
+            
+            infoContent.innerHTML = `<pre>${infoText}</pre>`;
+            console.log('Navigation info:', info);
+        }
+        
+        // Auto-show info on load
+        window.addEventListener('load', () => {
+            setTimeout(showInfo, 1000);
+        });
+    </script>
+</body>
+</html>
