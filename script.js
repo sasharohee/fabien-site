@@ -4,8 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    // Check if elements exist
+    if (!hamburger || !navMenu) {
+        console.warn('Hamburger menu elements not found');
+        console.log('Hamburger element:', hamburger);
+        console.log('Nav menu element:', navMenu);
+        return;
+    }
+
+    console.log('Mobile menu initialized successfully');
+
     // Toggle mobile menu
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Hamburger clicked'); // Debug log
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
@@ -25,6 +38,48 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.remove('active');
         }
     });
+
+    // Prevent menu from closing when clicking inside the menu
+    navMenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    // Additional mobile menu functionality
+    // Handle window resize to ensure menu closes on orientation change
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Touch events for better mobile support
+    hamburger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    });
+
+    // Ensure menu works on all mobile devices
+    hamburger.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Fallback: Force menu functionality if other methods fail
+    setTimeout(() => {
+        if (hamburger && navMenu) {
+            // Remove any existing event listeners and re-add them
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+            
+            newHamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                newHamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+    }, 100);
 });
 
 // Smooth scrolling for anchor links
@@ -255,9 +310,9 @@ function animateCounter(element, target, duration = 2000) {
 const statsObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number[data-count]');
+            const statNumbers = entry.target.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
             statNumbers.forEach((stat, index) => {
-                const target = parseInt(stat.getAttribute('data-count'));
+                const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
                 
                 if (target && !stat.classList.contains('animated')) {
                     stat.classList.add('animated');
@@ -277,7 +332,7 @@ const statsObserver = new IntersectionObserver(function(entries) {
 
 // Multiple fallback strategies for stats animation
 document.addEventListener('DOMContentLoaded', function() {
-    const statsSection = document.querySelector('.statistics-section');
+    const statsSection = document.querySelector('.statistics-section, .enhanced-stats');
     if (!statsSection) return;
     
     let animationTriggered = false;
@@ -294,9 +349,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isVisible) {
             animationTriggered = true;
-            const statNumbers = statsSection.querySelectorAll('.stat-number[data-count]');
+            const statNumbers = statsSection.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
             statNumbers.forEach((stat, index) => {
-                const target = parseInt(stat.getAttribute('data-count'));
+                const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
                 
                 if (target && !stat.classList.contains('animated')) {
                     stat.classList.add('animated');
@@ -319,11 +374,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Strategy 4: Final fallback - ensure numbers are displayed
     setTimeout(() => {
-        const statNumbers = statsSection.querySelectorAll('.stat-number[data-count]');
+        const statNumbers = statsSection.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
         statNumbers.forEach(stat => {
             if (!stat.classList.contains('animated')) {
-                const target = parseInt(stat.getAttribute('data-count'));
-                const statItem = stat.closest('.stat-item');
+                const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
+                const statItem = stat.closest('.stat-item, .stat-card');
                 const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
                 let suffix = '';
                 
@@ -506,9 +561,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const aboutStatsObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+                const statNumbers = entry.target.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
                 statNumbers.forEach((stat, index) => {
-                    const target = parseInt(stat.getAttribute('data-target'));
+                    const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
                     
                     if (target && !stat.classList.contains('animated')) {
                         stat.classList.add('animated');
@@ -580,11 +635,11 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Force display stats after a short delay regardless of other conditions
     setTimeout(() => {
-        const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+        const statNumbers = document.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
         statNumbers.forEach(stat => {
             if (stat.textContent === '0' || !stat.classList.contains('animated')) {
-                const target = parseInt(stat.getAttribute('data-count'));
-                const statItem = stat.closest('.stat-item');
+                const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
+                const statItem = stat.closest('.stat-item, .stat-card');
                 const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
                 let suffix = '';
                 
@@ -603,6 +658,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, 1000);
+    
+    // Mobile-specific fallback - more aggressive timing for mobile devices
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            const statNumbers = document.querySelectorAll('.stat-number[data-count], .stat-number[data-target]');
+            statNumbers.forEach(stat => {
+                if (stat.textContent === '0' || !stat.classList.contains('animated')) {
+                    const target = parseInt(stat.getAttribute('data-count') || stat.getAttribute('data-target'));
+                    const statItem = stat.closest('.stat-item, .stat-card');
+                    const statLabel = statItem ? statItem.querySelector('.stat-label').textContent : '';
+                    let suffix = '';
+                    
+                    if (target >= 100) {
+                        suffix = '+';
+                    } else if (target === 98) {
+                        suffix = '%';
+                    } else if (statLabel.includes('Heures')) {
+                        suffix = 'h';
+                    } else if (statLabel.includes('Années')) {
+                        suffix = ' ans';
+                    }
+                    
+                    stat.textContent = target + suffix;
+                    stat.classList.add('animated');
+                }
+            });
+        }, 500); // Faster fallback for mobile
+    }
 });
 
 // Brands section animations
