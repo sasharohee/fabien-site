@@ -6,7 +6,8 @@
     <title>Nos Services - FABREPAIR'TECH</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" crossorigin href="/assets/force-fix-DtBuUeeV.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-VGI6uOC_.css">
+  <link rel="stylesheet" crossorigin href="/assets/ultra-simple-nav-CBolSQCg.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -377,9 +378,76 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="mobile-fix.js"></script>
-    <script src="force-fix.js"></script>
+    <script>
+        // Ultra Simple Navigation - Works everywhere
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (!hamburger || !navMenu) return;
+            
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            }
+            
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu();
+            });
+            
+            hamburger.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+            });
+            
+            hamburger.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                toggleMenu();
+            });
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    if (navMenu.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+            
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        window.addEventListener('load', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                hamburger.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                };
+            }
+        });
+    </script>
+    
+    <!-- Tidio Chat Widget -->
+    <script src="//code.tidio.co/u2yd4xazsxm6fnswkygz1xd6nteze8i5.js" async></script>
 </body>
 </html>
 

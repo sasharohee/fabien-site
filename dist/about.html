@@ -7,7 +7,8 @@
     <title>À Propos - FABREPAIR'TECH</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" crossorigin href="/assets/force-fix-DtBuUeeV.css">
+  <link rel="stylesheet" crossorigin href="/assets/about-CxGKSsye.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-VGI6uOC_.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -119,40 +120,6 @@
                 </div>
             </div>
             
-            <div class="enhanced-stats">
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-count="100">0</div>
-                            <div class="stat-label">Appareils réparés</div>
-                            <div class="stat-description">Smartphones et tablettes</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-count="2">0</div>
-                            <div class="stat-label">Années d'expérience</div>
-                            <div class="stat-description">Depuis 2024</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-number" data-count="98">0</div>
-                            <div class="stat-label">% Satisfaction</div>
-                            <div class="stat-description">Clients satisfaits</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -267,9 +234,110 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="mobile-fix.js"></script>
-    <script src="force-fix.js"></script>
+    <script>
+        // Ultra Simple Navigation - Works everywhere
+        console.log('Ultra Simple Navigation loaded');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing navigation...');
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            console.log('Hamburger element:', hamburger);
+            console.log('Nav menu element:', navMenu);
+            
+            if (!hamburger || !navMenu) {
+                console.error('Navigation elements not found!');
+                return;
+            }
+            
+            // Simple toggle function
+            function toggleMenu() {
+                console.log('Toggling menu...');
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                console.log('Menu state:', {
+                    hamburgerActive: hamburger.classList.contains('active'),
+                    navMenuActive: navMenu.classList.contains('active')
+                });
+            }
+            
+            // Add click event to hamburger
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Hamburger clicked');
+                toggleMenu();
+            });
+            
+            // Add touch events for mobile
+            hamburger.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+            });
+            
+            hamburger.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                console.log('Hamburger touched');
+                toggleMenu();
+            });
+            
+            // Close menu when clicking on links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('Nav link clicked, closing menu');
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    if (navMenu.classList.contains('active')) {
+                        console.log('Clicked outside, closing menu');
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Close menu on window resize (desktop)
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            console.log('Navigation initialized successfully');
+        });
+        
+        // Fallback: Force initialization after page load
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking navigation...');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger && navMenu) {
+                console.log('Navigation elements found on window load');
+                
+                // Force add click handler if not already added
+                hamburger.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Hamburger clicked (fallback)');
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                };
+            }
+        });
+    </script>
+    
+    <!-- Tidio Chat Widget -->
+    <script src="//code.tidio.co/u2yd4xazsxm6fnswkygz1xd6nteze8i5.js" async></script>
 </body>
 </html>
 
