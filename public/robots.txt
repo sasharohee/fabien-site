@@ -1,0 +1,7 @@
+# Robots.txt pour Fixphonix
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.fixphonix.fr/sitemap.xml
+

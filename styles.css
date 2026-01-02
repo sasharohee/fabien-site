@@ -42,20 +42,24 @@ body {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
+    object-fit: contain;
 }
 
 .logo-text {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #000;
     letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    line-height: 1;
 }
 
 .nav-menu {
@@ -2207,6 +2211,15 @@ body {
         display: flex;
     }
 
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -2424,6 +2437,19 @@ body {
 }
 
 @media (max-width: 480px) {
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .nav-logo {
+        gap: 8px;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
