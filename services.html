@@ -407,7 +407,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 FIXPHONIX. Tous droits réservés.</p>
+                <p>&copy; <span id="copyright-year"></span> FIXPHONIX. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -476,6 +476,14 @@
                     hamburger.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 };
+            }
+        });
+        
+        // Set copyright year automatically
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.getElementById('copyright-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
             }
         });
     </script>
