@@ -12,7 +12,8 @@ export default defineConfig({
         main: './index.html',
         services: './services.html',
         about: './about.html',
-        contact: './contact.html'
+        contact: './contact.html',
+        cgv: './cgv.html'
       }
     }
   },

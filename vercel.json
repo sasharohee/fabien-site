@@ -27,6 +27,10 @@
       "dest": "/contact.html"
     },
     {
+      "src": "/cgv",
+      "dest": "/cgv.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
